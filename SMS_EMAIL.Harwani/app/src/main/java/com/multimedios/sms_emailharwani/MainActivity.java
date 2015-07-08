@@ -1,14 +1,18 @@
 package com.multimedios.sms_emailharwani;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -19,6 +23,24 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Context context = getApplicationContext();
+        CharSequence text = "Hello toast!";
+        int duration = Toast.LENGTH_LONG;
+
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_dialog,
+                (ViewGroup) findViewById(R.id.toast_layout_root));
+
+        TextView textToast = (TextView) layout.findViewById(R.id.text_toast);
+        textToast.setText(text);
+
+        Toast toast = new Toast(context);
+        toast.setDuration(duration);
+        toast.setView(layout);
+        toast.show();
+
+
 
         imbSMS=(ImageButton)findViewById(R.id.imbSMS);
         imbEMAIL=(ImageButton)findViewById(R.id.imbEMAIL);
